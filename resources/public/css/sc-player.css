@@ -1,0 +1,189 @@
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+/*  @font-face {
+      font-family: 'Font Name';
+      src: url('library/fonts/font-name.eot');
+      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
+             url('library/fonts/font-name.woff') format('woff'),
+             url('library/fonts/font-name.ttf') format('truetype'),
+             url('library/fonts/font-name.svg#font-name') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+*/
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+p {
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  word-break: break-word;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig"; }
+
+.sc-player {
+  margin: 0 0 20px; }
+  .sc-player a {
+    text-decoration: none;
+    font: 16px/18px Courier, serif; }
+
+.sc-artwork-list {
+  display: none; }
+
+.sc-info h3, .sc-info h4, .sc-info a.sc-info-close {
+  display: none; }
+.sc-info p {
+  float: right;
+  font-size: 14px;
+  letter-spacing: .5px;
+  margin: 0;
+  padding: 0; }
+
+.sc-controls {
+  height: 26px;
+  width: 80px;
+  margin-right: 8px;
+  float: left; }
+  .sc-controls a.sc-play, .sc-controls a.sc-pause {
+    font-size: .0000001px;
+    float: left;
+    display: block;
+    height: 26px;
+    margin-left: -3px;
+    width: 80px; }
+    .sc-controls a.sc-play:hover, .sc-controls a.sc-pause:hover {
+      background-color: #e0e1df; }
+  .sc-controls a.sc-play {
+    background-image: url(../img/play.png); }
+  .sc-controls a.sc-pause {
+    background: url(../img/pause.png); }
+
+.playing a.sc-play {
+  background: url(../img/pause.png);
+  background-color: #75ee4b; }
+  .playing a.sc-play:hover {
+    background-color: #75ee4b; }
+
+ol.sc-trackslist {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  ol.sc-trackslist a {
+    font-size: 16px;
+    color: #323944;
+    margin: 0 3px; }
+    ol.sc-trackslist a:before {
+      content: "<--"; }
+  ol.sc-trackslist .sc-track-duration {
+    display: none; }
+
+a.sc-info-toggle {
+  display: none; }
+
+.sc-scrubber {
+  padding-left: 2px;
+  height: 106px;
+  border-top: 2px #323944 solid;
+  border-right: 2px #323944 solid;
+  border-bottom: 2px #323944 solid; }
+  .sc-scrubber .sc-volume-slider {
+    display: none; }
+  .sc-scrubber .sc-time-span {
+    position: relative;
+    height: 76px;
+    margin: 7px 0 7px 0; }
+    .sc-scrubber .sc-time-span .sc-waveform-container, .sc-scrubber .sc-time-span .sc-buffer, .sc-scrubber .sc-time-span .sc-played {
+      height: 76px;
+      position: absolute;
+      top: 0;
+      left: 0; }
+    .sc-scrubber .sc-time-span .sc-waveform-container {
+      width: 100%;
+      z-index: 1; }
+      .sc-scrubber .sc-time-span .sc-waveform-container img {
+        width: 100%;
+        height: 100%; }
+    .sc-scrubber .sc-time-span .sc-buffer {
+      background-color: #323944;
+      z-index: -2; }
+    .sc-scrubber .sc-time-span .sc-played {
+      background-color: #75ee4b;
+      border-right: 7px solid white;
+      z-index: -1; }
+  .sc-scrubber .sc-time-indicators {
+    background-color: #e0e1df;
+    height: 16px;
+    color: #323944;
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 8px; }
+
+@media only screen and (max-width: 480px) {
+  .sc-player {
+    position: relative;
+    margin: 20px 0 24px; }
+
+  .sc-controls {
+    margin-left: 3px; }
+
+  .sc-scrubber {
+    margin: -4px 0 50px 0;
+    border: 2px #323944 solid; }
+
+  .sc-info {
+    position: absolute;
+    bottom: -26px;
+    right: 0; }
+
+  ol.sc-trackslist a {
+    font-size: 16px;
+    text-align: right;
+    display: block;
+    line-height: 12px;
+    height: 30px; } }
+@media only screen and (min-width: 481px) and (max-width: 737px) {
+  .sc-player {
+    position: relative;
+    margin: 20px 0 24px -2px; }
+
+  .sc-controls {
+    margin-left: 2px; }
+
+  .sc-scrubber {
+    margin: -4px 0 50px 0; }
+
+  .sc-info {
+    position: absolute;
+    bottom: -36px;
+    right: 0; }
+
+  ol.sc-trackslist a {
+    font-size: 16px;
+    text-align: right;
+    display: block;
+    line-height: 12px;
+    height: 30px; } }
