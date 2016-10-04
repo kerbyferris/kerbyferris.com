@@ -11,7 +11,9 @@
                  [org.clojure/core.async "0.2.385"
                   :exclusions [org.clojure/tools.reader]]
                  [reagent "0.5.1"]
-                 [secretary "1.2.3"]]
+                 [secretary "1.2.3"]
+                 [prismatic/dommy "1.1.0"]
+                 [jayq "2.5.4"]]
 
   :plugins [[lein-figwheel "0.5.4-7"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]

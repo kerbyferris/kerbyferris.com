@@ -2,18 +2,18 @@
 
 (def work-data
   [{:title "selected exhibitions & performances"
-    :content "some content"}
+    :content "<li>some contenta</li>"}
    {:title "TELEVISION"
-    :content "somee more content"}])
+    :content "<li>some more content</li>"}])
 
 (defn work[]
   [:div#cv
    [:a.download {:href "assets/CV.pdf" :target "_blank"}
     [:span "Download PDF-->"]
     [:img {:src "img/bang.png"}]]
-   [:ul work
+   [:ul.connect work
    (for [work work-data]
      ^{:key work} [:div
-       [:li.basic_box (work :title)]
-       [:li.box]
-       [:li.top-bar (work :content)]])]])
+       [:li.basic_box.open (work :title)]
+       [:li.box
+        [:ul.top-bar (work :content)]]])]])

@@ -8,7 +8,7 @@
 (defn bio[]
   [:div#bio
    [:div#bio_image
-      [:div
+      [:div.connect
         [:div.image
          [:img {:src (bio-data :title)}]]
         [:div.text.top-bar (bio-data :content)]]]])

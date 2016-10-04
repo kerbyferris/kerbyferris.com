@@ -10,7 +10,7 @@
 
 (defn contact[]
   [:div#contact
-    [:ul [:li
+    [:ul [:li.connect
           [:span.basic_box "Email"]
           [:span.comment "kerbyferris[at]gmail.com"]]
      (for [c contact-data]
