@@ -587,10 +587,11 @@ nav ul {
   #cv a.download:hover span {
     text-decoration: underline; }
 #cv ul li ul {
-  display: none;
+  /*display: none;*/
   border: 2px solid #323944;
   padding: 0 10px;
   margin: 10px 0 0;
+  overflow: hidden;
   font: 14px/16px "Andale Mono", Monaco, sans-serif;
   letter-spacing: .5px; }
   #cv ul li ul li {
@@ -605,7 +606,7 @@ nav ul {
   line-height: 14px;
   margin-top: 10px;
   background-color: white; }
-  #cv ul li.basic_box:first-child {
+  #cv ul div:first-child li.basic_box {
     margin-top: 0; }
   #cv ul li.basic_box:hover {
     background-color: #e0e1df;
@@ -709,7 +710,7 @@ Media Queries
       line-height: 14px;
       margin-top: 10px;
       margin-left: -4px; }
-      #cv ul li.basic_box:first-child {
+      #cv ul div:first-child li.basic_box {
         margin-top: 0; }
     #cv ul li.box {
       margin-left: -4px;
@@ -825,7 +826,7 @@ Media Queries
         padding: 7px 10px;
         margin-top: 10px;
         margin-left: -6px; }
-        div#cv ul li.basic_box:first-child {
+        div#cv ul div:first-child li.basic_box {
           margin-top: 0; }
 
   div#bio div.image {
@@ -840,7 +841,7 @@ Media Queries
 
   div#contact {
     margin-left: 60%;
-    padding-top: 0; } }
+    padding-top: 0; }
 @media only screen and (min-width: 1140px) {
   /* ===============
       Maximal Width
