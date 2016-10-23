@@ -13,6 +13,7 @@
                  [reagent "0.5.1"]
                  [secretary "1.2.3"]
                  [prismatic/dommy "1.1.0"]
+                 [jayq "2.5.4"]
                  [binaryage/devtools "0.8.2"]
                  [jayq "2.5.4"]]
 

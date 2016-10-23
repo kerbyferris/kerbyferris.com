@@ -1,4 +1,5 @@
 (ns kerbyferris.core
+  (:use [jayq.core :only [$ css html]])
   (:require-macros [dommy.core :refer [sel sel1]])
   (:require [reagent.core :as r]
             [kerbyferris.routes :refer [app-routes]]
