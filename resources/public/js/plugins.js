@@ -118,8 +118,7 @@ $(document).ready(function(){
     line2.attr("y1", 0);
     line2.attr("x2", l2x2);
     line2.attr("y2", 75);
-
-  };
+  }
 
   // sounds open by default
   //lineDraw($("div#sounds > p.basic_box"), $("a#sounds_link img"));
