@@ -26,75 +26,24 @@
 
 $(document).ready(function(){
 
-  var sounds_link = $("#sounds_link");
-  var cv_link = $("#cv_link");
-  var bio_link = $("#bio_link");
-  var contact_link = $("#contact_link");
-  var sounds_div = $("div#sounds");
-  var cv_div = $("div#cv");
-  var bio_div = $("div#bio");
-  var contact_div = $("div#contact");
-  var sounds_line = $("line#sounds");
-  var cv_line = $("line#cv");
-  var bio_line = $("line#bio");
-  var contact_line = $("line#contact");
-  var top_bars = $(".top-bar");
-
-  top_bars.each(function() {
+  $(".top-bar").each(function() {
     $(this).append("<div class='top-left'></div>");
     $(this).append("<div class='top-right'></div>");
   });
 
-  function nav_actions(link, div, line) {
-    $("a.current").each(function() {
-      if($(this).attr('id')!= div.attr('id')) {
-        $(this).removeClass("current");
-      }
-    });
-    $("div.current").each(function() {
-      if($(this).attr('id')!= div.attr('id')) {
-        $(this).removeClass("current");
-        $(this).hide();
-      }
-    });
-    $("line.current").each(function() {
-      if($(this).attr('id')!= line.attr('id')) {
-        $(this).attr("class", "");
-        $(this).hide();
-      }
-    });
-    div.addClass("current");
-    link.addClass("current");
-    line.attr("class", "current");
-    div.fadeIn("slow");
-    //line.fadeIn("slow");
-  }
+  // WORK page
 
-  //sounds_link.click(function(){
-  //  nav_actions(sounds_link, sounds_div, sounds_line);
-  //});
-  //cv_link.click(function(){
-  //  nav_actions(cv_link, cv_div, cv_line);
-  //});
-  //bio_link.click(function(){
-  //  nav_actions(bio_link, bio_div, bio_line);
-  //});
-  //contact_link.click(function(){
-  //  nav_actions(contact_link, contact_div, contact_line);
-  //});
-
-  // CV page
-
-  //$("#cv ul li.basic_box").click(function() {
-  //  $(this).toggleClass("open");
-  //  $(this).next(".box").children().slideToggle();
-  //});
+  $("#work ul li.basic_box").click(function() {
+    $(this).next(".box").children().slideToggle();
+  });
 
   // Connectors
 
   function lineDraw(linkToElem, linkFromElem){
     var linkTo = linkToElem;
     var linkFrom = linkFromElem;
+
+    //linkTo.css("background-color", "green");
 
     var linkToWidth = linkTo.outerWidth();
     var linkToOffset = linkTo.offset();
@@ -107,7 +56,6 @@ $(document).ready(function(){
     var x1 = linkFromOffset.left + 5;
     var l1x2 = linkToOffset.left + 2;
     var l2x2 = linkToOffset.left + linkToWidth - 2;
-    
 
     line1.attr("x1", x1);
     line1.attr("y1", 0);
@@ -121,19 +69,19 @@ $(document).ready(function(){
   }
 
   // sounds open by default
-  //lineDraw($("div#sounds > p.basic_box"), $("a#sounds_link img"));
+  //lineDraw($("div#sounds p.basic_box"), $("a#sounds_link img"));
 
-  //sounds_link.click(function() {
-  //  lineDraw($("div#sounds > p.basic_box"), $("a#sounds_link img"));
+  //$("#sounds_link").click(function() {
+  //  lineDraw($("div#sounds p.basic_box"), $("a#sounds_link img"));
   //});
-  //cv_link.click(function() {
-  //  lineDraw($("div#cv li.basic_box"), $("a#cv_link img"));
+  //$("#work_link").click(function() {
+  //  lineDraw($("div#work li.basic_box"), $("a#work_link img"));
   //});
-  //bio_link.click(function() {
-  //  lineDraw($("div#bio_image > div.text"), $("a#bio_link img"));
+  //$("#bio_link").click(function() {
+  //  lineDraw($("div#bio_image div.text"), $("a#bio_link img"));
   //});
-  //contact_link.click(function() {
-  //  lineDraw($("div#contact > ul > li > span.basic_box"), $("a#contact_link img"));
+  //$("#contact_link").click(function() {
+  //  lineDraw($("div#contact ul li span.basic_box"), $("a#contact_link img"));
   //});
 
 });

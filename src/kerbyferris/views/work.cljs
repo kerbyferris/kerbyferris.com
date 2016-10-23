@@ -101,7 +101,7 @@
    {:title "PRESS" :content [press]}])
 
 (defn work[]
-  [:div#cv
+  [:div#work
     [:a.download {:href "assets/CV.pdf" :target "_blank"}
       [:span "Download PDF-->"]
       [:img {:src "img/bang.png"}]]
@@ -113,5 +113,4 @@
                       [:li.basic_box {:class (if (is-open-header? title) "open")
                                       :on-click #(update-open-headers! title)} title]
                       [:li.box 
-                        [:ul.top-bar 
-                          {:style {:display (if (is-open-header? title) "block" "none")}} content]]])))]])
+                        [:ul.top-bar content]]])))]])

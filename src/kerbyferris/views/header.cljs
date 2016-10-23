@@ -14,16 +14,17 @@
         page-id (str page-name "_link")
         page-link (str "#/" page-name)
         page-render (page :render)]
-    ^{:key page} [:li [:a {:class (if (is-current-page? page-render) "current")
-                           :id page-id
-                           :href page-link}
-                       [:img {:src "img/bang.png"}]
-                       [:span.flag_box (capitalize page-name)]]]))
+    ^{:key page}
+    [:li
+      [:a {:class (if (is-current-page? page-render) "current")
+           :id page-id
+           :href page-link}
+       [:img {:src "img/bang.png"}]
+       [:span.flag_box (capitalize page-name)]]]))
 
 (defn nav[]
-  (let [nav-link-pages (rest pages)]
-    [:nav [:ul
-      (doall (for [page nav-link-pages] (nav-link page)))]]))
+  [:nav
+    [:ul (doall (for [page pages] (nav-link page)))]])
 
 (defn header[]
   [:div.header-container
