@@ -24,7 +24,8 @@
 
 (defn nav[]
   [:nav
-    [:ul (doall (for [page pages] (nav-link page)))]])
+   (let [internal-pages (rest pages)] ;remove home
+    [:ul (doall (for [page internal-pages] (nav-link page)))])])
 
 (defn header[]
   [:div.header-container

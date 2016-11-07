@@ -470,6 +470,8 @@ body {
     padding: 10px 20px 0 15px; }
     #logo h1:hover {
       background-color: white; }
+    #logo h1.current {
+      background-color: #75ee4b; }
 
 nav ul {
   margin: 0;

@@ -19,5 +19,6 @@
    [:div.main-container
     [:div#connectors
      [:svg
-      [:line.first (:line-1 @state)]
-      [:line.second (:line-2 @state)]]]])
+      ;[:line.first (:line-1 @state)]
+      ;[:line.second (:line-2 @state)]
+      ]]])
