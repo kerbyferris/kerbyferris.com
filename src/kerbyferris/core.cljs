@@ -1,5 +1,4 @@
 (ns kerbyferris.core
-  (:require-macros [dommy.core :refer [sel sel1]])
   (:require [reagent.core :as r]
             [kerbyferris.routes :refer [app-routes]]
             [kerbyferris.views.main :as main :refer [page]]

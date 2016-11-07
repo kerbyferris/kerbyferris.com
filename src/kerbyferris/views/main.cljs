@@ -1,5 +1,7 @@
 (ns kerbyferris.views.main
-  (:require [kerbyferris.state :as state :refer [state]]
+  (:require-macros [dommy.core :refer [sel sel1]])
+  (:require [dommy.core :as dommy]
+            [kerbyferris.state :as state :refer [state]]
             [kerbyferris.helpers :refer [is-current-page?]]
             [kerbyferris.views.header :refer [header]]
             [kerbyferris.views.animations :refer [connectors]]
@@ -14,8 +16,9 @@
       [:div.main.wrapper.clearfix
         (doall
           (for [page pages] ^{:key page}
-            [:div {:style
-                   {:display (if (is-current-page?
+            [:div {:style {:display (if (is-current-page?
                                    (:render page)) "block" "none")}}
              (:render page)]))]]
     [footer]])
+
+(js/console.log (sel1 :nav))

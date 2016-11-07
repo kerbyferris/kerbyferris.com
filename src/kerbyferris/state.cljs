@@ -2,8 +2,8 @@
   (:require [reagent.core :as r :refer [atom]]
             [kerbyferris.views.sounds :refer [sounds]]))
 
-(def nav-send {:x1 0 :x2 0 :y1 0 :y2 0})
-(def nav-return {:x1 0 :x2 0 :y1 0 :y2 0})
+(def nav-send {:x1 600 :x2 20 :y1 0 :y2 30})
+(def nav-return {:x1 600 :x2 50 :y1 0 :y2 60})
 (def default-page [sounds])
 (def open-headers #{})
 
