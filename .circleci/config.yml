@@ -33,7 +33,6 @@ jobs:
             --recursive
             --acl public-read
 
-
 workflows:
   version: 2
   deploy-live:
