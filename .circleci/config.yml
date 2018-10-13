@@ -19,7 +19,6 @@ jobs:
             aws s3 cp live/* s3://kerbyferris.com
             --recursive
             --acl public-read
-            -- profile kerbyferris
 
 workflows:
   version: 2
