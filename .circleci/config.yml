@@ -13,6 +13,7 @@ jobs:
             cd terraform
             terraform init
             terraform apply -input=false
+            cd ..
 
       - persist_to_workspace:
           root: .
