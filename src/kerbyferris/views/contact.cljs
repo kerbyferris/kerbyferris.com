@@ -1,12 +1,14 @@
 (ns kerbyferris.views.contact)
 
 (def contact-data
-  [{:title "Soundcloud"
-    :content "https://soundcloud.com/pawprincemusic"}
+  [{:title "Instagram"
+    :content "https://www.instagram.com/kerbyanneferris"}
+   {:title "Soundcloud"
+    :content "https://soundcloud.com/kerbyferris"}
+   {:title "Spotify"
+    :content "https://open.spotify.com/artist/3LdM4CrNwFJzj1ZvEKtBpA?si=mwCLDZ2IQcepPWXWrIeRrg"}
    {:title "GitHub"
-    :content "https://github.com/kerbyferris"}
-   {:title "LinkedIn"
-    :content "http://lnkd.in/bwt7D53"}])
+    :content "https://github.com/kerbyferris"}])
 
 (defn contact[]
   [:div#contact
