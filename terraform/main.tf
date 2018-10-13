@@ -10,3 +10,11 @@ module "kerbyferris_live" {
   # root_dns  = "${var.root_dns}"
   # zone_id   = "${module.route53.zone_id}"
 }
+
+module "kerbyferris_cljs" {
+  source      = "./s3_website"
+  bucket_name = "cljs.kerbyferris.com"
+  aws_region  = "${var.AWS_REGION}"
+  # root_dns  = "${var.root_dns}"
+  # zone_id   = "${module.route53.zone_id}"
+}

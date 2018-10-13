@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy:
+  deploy-infra:
     docker:
       - image: hashicorp/terraform:light
 
@@ -13,6 +13,19 @@ jobs:
             cd terraform
             terraform init
             terraform apply -input=false
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy-live:
+    docker:
+      - image: hashicorp/terraform:light
+
+    steps:
+      - attach_workspace:
+          at: .
 
       - run:
           name: Install awscli
@@ -33,13 +46,69 @@ jobs:
             --recursive
             --acl public-read
 
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy-cljs:
+    docker:
+      - image: hashicorp/terraform:light
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Install awscli
+          command: |
+            apk -v --update add python py-pip 
+            pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
+
+      - run:
+          name: Configure Credentials
+          command: |
+            aws configure set kerbyferris.aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set kerbyferris.aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+      - run:
+          name: Push to s3
+          command: >
+            aws s3 cp resources/public/ s3://cljs.kerbyferris.com
+            --recursive
+            --acl public-read
+
 workflows:
   version: 2
   deploy-live:
     jobs:
-      - deploy:
+      - deploy-infra:
           filters:
             branches:
               only:
                 - live
+          context: kerbyferris
+      - deploy-live:
+          requires:
+            - deploy-infra
+          filters:
+            branches:
+              only:
+                - live
+          context: kerbyferris
+  deploy-cljs:
+    jobs:
+      - deploy-infra:
+          filters:
+            branches:
+              only:
+                - master
+          context: kerbyferris
+      - deploy-live:
+          requires:
+            - deploy-infra
+          filters:
+            branches:
+              only:
+                - master
           context: kerbyferris
