@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy-live:
+  deploy:
     docker:
       - image: mesosphere/aws-cli
 
@@ -25,7 +25,7 @@ workflows:
   version: 2
   deploy-live:
     jobs:
-      - deploy-live:
+      - deploy:
           filters:
             branches:
               only:
