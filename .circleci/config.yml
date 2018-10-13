@@ -1,11 +1,29 @@
 version: 2
 jobs:
+  deploy-infra:
+    docker:
+      - image: circleci/terraform
+
+    steps:
+      - checkout
+
+      - run:
+          name: Terraform
+          command: >
+            cd terraform && terraform apply
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
   deploy:
     docker:
       - image: mesosphere/aws-cli
 
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
 
       - run:
           name: Configure Credentials
