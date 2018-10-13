@@ -45,7 +45,15 @@ workflows:
   version: 2
   deploy-live:
     jobs:
+      - deploy-infra:
+          filters:
+            branches:
+              only:
+                - live
+          context: kerbyferris
       - deploy:
+          requires:
+            - deploy-infra
           filters:
             branches:
               only:
