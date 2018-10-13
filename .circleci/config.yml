@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: hashicorp/terraform:light
+
+    steps:
+      - checkout
+
+      - run:
+          name: Terraform
+          command: |
+            cd terraform
+            terraform init
+            terraform apply -input=false
+
+      - run:
+          name: Install awscli
+          command: |
+            apk -v --update add python py-pip 
+            pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
+
+      - run:
+          name: Configure Credentials
+          command: |
+            aws configure set kerbyferris.aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set kerbyferris.aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+      - run:
+          name: Push to s3
+          command: >
+            aws s3 cp live/ s3://kerbyferris.com
+            --recursive
+            --acl public-read
+
+workflows:
+  version: 2
+  deploy-live:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - live
+          context: kerbyferris
