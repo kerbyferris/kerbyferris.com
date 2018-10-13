@@ -19,10 +19,7 @@ jobs:
           command: |
             apk -v --update add \
               python \
-              py-pip \
-              groff \
-              less \
-              mailcap && \
+              py-pip 
             pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
 
       - run:
