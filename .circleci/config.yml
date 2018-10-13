@@ -9,7 +9,10 @@ jobs:
 
       - run:
           name: Terraform
-          command: cd terraform && terraform init && terraform apply -input=false
+          command: |
+            cd terraform
+            terraform init
+            terraform apply -auto-approve
 
       - persist_to_workspace:
           root: .
