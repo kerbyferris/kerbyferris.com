@@ -9,8 +9,10 @@ jobs:
 
       - run:
           name: Terraform
-          command: >
-            cd terraform && terraform apply
+          command: |
+            cd terraform
+            terraform apply
+            cd ..
 
       - persist_to_workspace:
           root: .
