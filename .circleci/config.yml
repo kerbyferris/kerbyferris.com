@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  deploy-live:
+    docker:
+      - image: mesosphere/aws-cli
+
+    steps:
+      - checkout
+
+      - run:
+          name: Configure Credentials
+          command: >
+            aws configure set kerbyferris.aws_access_key_id $AWS_ACCESS_KEY_ID &&
+            aws configure set kerbyferris.aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+      - run:
+          name: Push to s3
+          command: >
+            aws s3 cp live/* s3://kerbyferris.com
+            --recursive
+            --acl public-read
+            -- profile kerbyferris
+
+workflows:
+  version: 2
+  deploy-live:
+    jobs:
+      - deploy-live:
+          filters:
+            branches:
+              only:
+                -live
+        context: kerbyferris
