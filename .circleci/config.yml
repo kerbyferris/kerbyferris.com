@@ -104,7 +104,7 @@ workflows:
               only:
                 - master
           context: kerbyferris
-      - deploy-live:
+      - deploy-cljs:
           requires:
             - deploy-infra
           filters:
