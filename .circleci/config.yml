@@ -73,7 +73,7 @@ jobs:
             - .
 
 
-  deploy-cljs:
+  deploy-s3:
     docker:
       - image: hashicorp/terraform:light
 
@@ -81,18 +81,26 @@ jobs:
       - attach_workspace:
           at: .
 
-      # - run:
-      #     name: Install awscli
-      #     command: |
-      #       apk -v --update add python py-pip 
-      #       pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
+      - run:
+          name: Install awscli
+          command: |
+            apk -v --update add python py-pip 
+            pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
 
-      # - run:
-      #     name: Push to s3
-      #     command: >
-      #       aws s3 cp resources/public/ s3://cljs.kerbyferris.com
-      #       --recursive
-      #       --acl public-read
+      - run:
+          name: Push to s3
+          command: >
+            aws s3 cp resources/public/ s3://cljs.kerbyferris.com
+            --recursive
+            --acl public-read
+
+  deploy-gh-pages:
+    docker:
+      - image: hashicorp/terraform:light
+
+    steps:
+      - attach_workspace:
+          at: .
 
       - run:
           name: Push to github pages
@@ -116,7 +124,7 @@ workflows:
               only:
                 - live
           context: kerbyferris
-  deploy-cljs:
+  deploy-master:
     jobs:
       - deploy-infra:
           filters:
@@ -139,4 +147,28 @@ workflows:
             branches:
               only:
                 - master
+          context: kerbyferris
+  deploy-gh-pages:
+    jobs:
+      - deploy-infra:
+          filters:
+            branches:
+              only:
+                - gh-pages
+          context: kerbyferris
+      - test-build-cljs:
+          requires:
+            - deploy-infra
+          filters:
+            branches:
+              only:
+                - gh-pages
+          context: kerbyferris
+      - deploy-gh-pages:
+          requires:
+            - test-build-cljs
+          filters:
+            branches:
+              only:
+                - gh-pages
           context: kerbyferris
