@@ -51,6 +51,28 @@ jobs:
           paths:
             - .
 
+  build-test-cljs:
+    docker:
+      - image: circleci/clojure
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Test
+          command: lein test
+
+      - run:
+          name: Build
+          command: lein do clean, cljsbuild once min
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+
   deploy-cljs:
     docker:
       - image: hashicorp/terraform:light
