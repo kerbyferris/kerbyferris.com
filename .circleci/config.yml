@@ -51,7 +51,7 @@ jobs:
           paths:
             - .
 
-  build-test-cljs:
+  test-build-cljs:
     docker:
       - image: circleci/clojure
 
@@ -126,9 +126,17 @@ workflows:
               only:
                 - master
           context: kerbyferris
-      - deploy-cljs:
+      - test-build-cljs:
           requires:
             - deploy-infra
+          filters:
+            branches:
+              only:
+                - master
+          context: kerbyferris
+      - deploy-cljs:
+          requires:
+            - test-build-cljs
           filters:
             branches:
               only:
