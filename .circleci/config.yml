@@ -81,18 +81,22 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run:
-          name: Install awscli
-          command: |
-            apk -v --update add python py-pip 
-            pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
+      # - run:
+      #     name: Install awscli
+      #     command: |
+      #       apk -v --update add python py-pip 
+      #       pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
+
+      # - run:
+      #     name: Push to s3
+      #     command: >
+      #       aws s3 cp resources/public/ s3://cljs.kerbyferris.com
+      #       --recursive
+      #       --acl public-read
 
       - run:
-          name: Push to s3
-          command: >
-            aws s3 cp resources/public/ s3://cljs.kerbyferris.com
-            --recursive
-            --acl public-read
+          name: Push to github pages
+          command: git subtree push --prefix resources/public/ origin gh-pages
 
 workflows:
   version: 2
