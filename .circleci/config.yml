@@ -140,7 +140,7 @@ workflows:
               only:
                 - master
           context: kerbyferris
-      - deploy-cljs:
+      - deploy-s3:
           requires:
             - test-build-cljs
           filters:
