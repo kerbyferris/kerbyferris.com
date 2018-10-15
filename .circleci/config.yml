@@ -19,38 +19,6 @@ jobs:
           paths:
             - .
 
-  deploy-live:
-    docker:
-      - image: hashicorp/terraform:light
-
-    steps:
-      - attach_workspace:
-          at: .
-
-      - run:
-          name: Install awscli
-          command: |
-            apk -v --update add python py-pip 
-            pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic
-
-      - run:
-          name: Configure Credentials
-          command: |
-            aws configure set kerbyferris.aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set kerbyferris.aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-
-      - run:
-          name: Push to s3
-          command: >
-            aws s3 cp live/ s3://kerbyferris.com
-            --recursive
-            --acl public-read
-
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
   test-build-cljs:
     docker:
       - image: circleci/clojure
@@ -80,7 +48,7 @@ jobs:
             - .
 
 
-  deploy-s3:
+  deploy:
     docker:
       - image: hashicorp/terraform:light
 
@@ -97,7 +65,7 @@ jobs:
       - run:
           name: Push to s3
           command: >
-            aws s3 cp resources/public/ s3://cljs.kerbyferris.com
+            aws s3 cp resources/public/ s3://kerbyferris.com
             --recursive
             --acl public-read
 
@@ -110,22 +78,6 @@ jobs:
 
 workflows:
   version: 2
-  deploy-live:
-    jobs:
-      - deploy-infra:
-          filters:
-            branches:
-              only:
-                - live
-          context: kerbyferris
-      - deploy-live:
-          requires:
-            - deploy-infra
-          filters:
-            branches:
-              only:
-                - live
-          context: kerbyferris
   deploy-master:
     jobs:
       - deploy-infra:
@@ -142,7 +94,7 @@ workflows:
               only:
                 - master
           context: kerbyferris
-      - deploy-s3:
+      - deploy:
           requires:
             - test-build-cljs
           filters:
