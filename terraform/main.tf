@@ -39,7 +39,7 @@ resource "aws_route53_record" "alias" {
 }
 
 data "aws_acm_certificate" "cert" {
-  domain      = "kerbyferris.com"
+  domain      = "*.kerbyferris.com"
   statuses    = ["ISSUED"]
   types       = ["AMAZON_ISSUED"]
   most_recent = true
