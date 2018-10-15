@@ -26,17 +26,17 @@ resource "aws_route53_zone" "zone" {
   comment = "kerbyferris.com root DNS"
 }
 
-resource "aws_route53_record" "alias" {
-  zone_id = "${aws_route53_zone.zone.zone_id}"
-  name    = "kerbyferris.com"
-  type    = "A"
+# resource "aws_route53_record" "alias" {
+#   zone_id = "${aws_route53_zone.zone.zone_id}"
+#   name    = "kerbyferris.com"
+#   type    = "A"
 
-  alias = {
-    name                   = "${aws_s3_bucket.site.website_domain}"
-    zone_id                = "${aws_s3_bucket.site.hosted_zone_id}"
-    evaluate_target_health = false
-  }
-}
+#   alias = {
+#     name                   = "${aws_s3_bucket.site.website_domain}"
+#     zone_id                = "${aws_s3_bucket.site.hosted_zone_id}"
+#     evaluate_target_health = false
+#   }
+# }
 
 data "aws_acm_certificate" "cert" {
   domain      = "kerbyferris.com"
@@ -47,9 +47,9 @@ data "aws_acm_certificate" "cert" {
 
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
-    # s3_origin_config {
-    #   origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
-    # }
+    s3_origin_config {
+      origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
+    }
 
     domain_name = "${aws_s3_bucket.site.bucket_regional_domain_name}"
     origin_id   = "kerbyferris.com"
@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
-  # aliases = ["kerbyferris.com"]
+  aliases = ["kerbyferris.com"]
 
   restrictions {
     geo_restriction {
@@ -92,4 +92,16 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 }
 
-# resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
+resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
+
+resource "aws_route53_record" "site_alias" {
+  name    = "kerbyferris.com"
+  zone_id = "${aws_route53_zone.zone.zone_id}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_cloudfront_distribution.distribution.domain_name}"
+    zone_id                = "${aws_cloudfront_distribution.distribution.hosted_zone_id}"
+    evaluate_target_health = false
+  }
+}
