@@ -16,12 +16,12 @@ resource "aws_s3_bucket" "site" {
   }
 }
 
-# data "aws_acm_certificate" "cert" {
-#   domain      = "*.${var.root_dns}"
-#   statuses    = ["ISSUED"]
-#   types       = ["AMAZON_ISSUED"]
-#   most_recent = true
-# }
+data "aws_acm_certificate" "cert" {
+  domain      = "*.${var.bucket_name}"
+  statuses    = ["ISSUED"]
+  types       = ["AMAZON_ISSUED"]
+  most_recent = true
+}
 
 # resource "aws_cloudfront_distribution" "distribution" {
 #   origin {
@@ -39,8 +39,8 @@ resource "aws_s3_bucket" "site" {
 #   default_cache_behavior {
 #     viewer_protocol_policy = "redirect-to-https"
 #     compress               = true
-#     allowed_methods        = ["GET", "HEAD"]
-#     cached_methods         = ["GET", "HEAD"]
+#     allowed_methods        = ["get", "head"]
+#     cached_methods         = ["get", "head"]
 
 #     target_origin_id = "${local.name}"
 #     min_ttl          = 0

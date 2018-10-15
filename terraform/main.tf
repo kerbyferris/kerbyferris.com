@@ -3,18 +3,37 @@ provider "aws" {
   region  = "${var.AWS_REGION}"
 }
 
-module "kerbyferris_live" {
-  source      = "./s3_website"
-  bucket_name = "kerbyferris.com"
-  aws_region  = "${var.AWS_REGION}"
-  # root_dns  = "${var.root_dns}"
-  # zone_id   = "${module.route53.zone_id}"
+resource "aws_s3_bucket" "site" {
+  bucket = "kerbyferris.com"
+  region = "${var.AWS_REGION}"
+  acl    = "public-read"
+
+  website {
+    index_document = "index.html"
+  }
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT", "POST"]
+    allowed_origins = ["*"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+  }
 }
 
-module "kerbyferris_cljs" {
-  source      = "./s3_website"
-  bucket_name = "cljs.kerbyferris.com"
-  aws_region  = "${var.AWS_REGION}"
-  # root_dns  = "${var.root_dns}"
-  # zone_id   = "${module.route53.zone_id}"
+resource "aws_route53_zone" "zone" {
+  name    = "kerbyferris.com"
+  comment = "kerbyferris.com root DNS"
+}
+
+resource "aws_route53_record" "alias" {
+  zone_id = "${aws_route53_zone.zone.zone_id}"
+  name    = "kerbyferris.com"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_s3_bucket.site.website_domain}"
+    zone_id                = "${aws_s3_bucket.site.hosted_zone_id}"
+    evaluate_target_health = false
+  }
 }
