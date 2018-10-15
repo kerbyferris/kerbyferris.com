@@ -61,8 +61,8 @@ resource "aws_cloudfront_distribution" "distribution" {
   default_cache_behavior {
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
-    allowed_methods        = ["get", "head"]
-    cached_methods         = ["get", "head"]
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
 
     target_origin_id = "kerbyferris.com"
     min_ttl          = 0
