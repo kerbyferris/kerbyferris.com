@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
-  aliases = ["kerbyferris.com"]
+  # aliases = ["kerbyferris.com"]
 
   restrictions {
     geo_restriction {
