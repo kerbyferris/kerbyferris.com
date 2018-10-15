@@ -69,7 +69,7 @@ jobs:
 
       - run:
           name: Commit Build Artifacts
-          command: git commit -am "CircleCI build: ${CIRCLE_BUILD_NUM}"
+          command: git commit -am "CircleCI build ${CIRCLE_BUILD_NUM}"
 
       - persist_to_workspace:
           root: .
