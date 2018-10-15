@@ -67,6 +67,10 @@ jobs:
           name: Build
           command: lein do clean, cljsbuild once min
 
+      - run:
+          name: Commit Build Artifacts
+          command: git commit -am 'build'
+
       - persist_to_workspace:
           root: .
           paths:
