@@ -78,8 +78,6 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
-  aliases = ["kerbyferris.com"]
-
   restrictions {
     geo_restriction {
       restriction_type = "none"
@@ -93,15 +91,3 @@ resource "aws_cloudfront_distribution" "distribution" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
-
-resource "aws_route53_record" "site_alias" {
-  name    = "kerbyferris.com"
-  zone_id = "${aws_route53_zone.zone.zone_id}"
-  type    = "A"
-
-  alias = {
-    name                   = "${aws_cloudfront_distribution.distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.distribution.hosted_zone_id}"
-    evaluate_target_health = false
-  }
-}
