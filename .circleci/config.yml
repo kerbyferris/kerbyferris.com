@@ -69,11 +69,11 @@ jobs:
             --recursive
             --acl public-read
 
-      - run:
-          name: Push to github pages
-          command: |
-            git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' 
-            git subtree push --prefix resources/public/ origin gh-pages
+      # - run:
+      #     name: Push to github pages
+      #     command: |
+      #       git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' 
+      #       git subtree push --prefix resources/public/ origin gh-pages
 
 
 workflows:
