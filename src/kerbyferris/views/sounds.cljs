@@ -2,7 +2,9 @@
 
 (defn sounds[]
   [:div#sounds 
-    [:p.basic_box "Production Samples:"]
+    [:p.basic_box "Songs"]
+    [:a {:href "https://soundcloud.com/kerbyferris/else-is-a-function-whose-value-is-always-true" :class "sc-player"}
+     "Else is a Function Whose Value is Always True"]
     [:a {:href "https://soundcloud.com/kerbyferris/kerby-ferris-ojai" :class "sc-player"}
      "Ojai"]
     [:a {:href "https://soundcloud.com/kerbyferris/face-challenges" :class "sc-player"}
