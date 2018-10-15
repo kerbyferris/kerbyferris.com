@@ -47,9 +47,9 @@ data "aws_acm_certificate" "cert" {
 
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
-    s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
-    }
+    # s3_origin_config {
+    #   origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
+    # }
 
     domain_name = "${aws_s3_bucket.site.bucket_regional_domain_name}"
     origin_id   = "kerbyferris.com"
@@ -78,6 +78,8 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
+  aliases = ["kerbyferris.com"]
+
   restrictions {
     geo_restriction {
       restriction_type = "none"
@@ -90,4 +92,4 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 }
 
-resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
+# resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
