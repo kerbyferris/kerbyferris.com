@@ -102,15 +102,34 @@
 
 (defn work[]
   [:div#work
-    [:a.download {:href "assets/CV.pdf" :target "_blank"}
-      [:span "Download PDF-->"]
-      [:img {:src "img/bang.png"}]]
-    [:ul.connect
-      (doall (for [w work-data]
-        (let [title (w :title)
-              content (w :content)]
-          ^{:key w} [:div
-                      [:li.basic_box {:class (if (is-open-header? title) "open")
-                                      :on-click #(update-open-headers! title)} title]
-                      [:li.box 
-                        [:ul.top-bar content]]])))]])
+    [:ul 
+     [:li
+      [:video
+       {:controls true
+        :loop true
+        :playsinline true
+        :type "video/mp4"
+        :poster "https://instagram.fden3-1.fna.fbcdn.net/vp/d0b6cbddefdd938becee357512e05672/5C296CB1/t51.2885-15/e35/43595142_481509839027296_6235953730803460662_n.jpg?_nc_ht=instagram.fden3-1.fna.fbcdn.net"
+        :src "https://instagram.fden3-1.fna.fbcdn.net/vp/e4b53a244e9e5ab9c44f3c971901c46f/5C28F950/t50.2886-16/44165663_2163277323910803_7924230999175593984_n.mp4?_nc_ht=instagram.fden3-1.fna.fbcdn.net"}]]
+     [:li
+      [:video
+       {:controls true
+        :loop true
+        :playsinline true
+        :type "video/mp4"
+        :poster "https://instagram.fden3-1.fna.fbcdn.net/vp/b7d549e43a1b10a4a18b0be776d7f013/5C2979D0/t51.2885-15/e35/42982400_248177655846218_5105470319226478529_n.jpg?_nc_ht=instagram.fden3-1.fna.fbcdn.net"
+        :src "https://instagram.fden3-1.fna.fbcdn.net/vp/b2d4e674c9021c77c6066104af0fa6f5/5C29141B/t50.2886-16/43114356_176440779898393_1035183102265131008_n.mp4?_nc_ht=instagram.fden3-1.fna.fbcdn.net"}]]
+     [:li
+      [:video
+       {:controls true
+        :loop true
+        :playsinline true
+        :type "video/mp4"
+        :poster "https://instagram.fden3-1.fna.fbcdn.net/vp/e6f9292a93996e8f6e0abfc3ebe30e1f/5C2A0000/t51.2885-15/e35/41905224_306828226773352_4224246491398252888_n.jpg?_nc_ht=instagram.fden3-1.fna.fbcdn.net"
+        :src "https://instagram.fden3-1.fna.fbcdn.net/vp/6746e081311d8483bc21188a82ae28c5/5C292CA5/t50.2886-16/42804215_155941835347294_3697190320358817792_n.mp4?_nc_ht=instagram.fden3-1.fna.fbcdn.net"
+        }]]
+
+
+    ]
+  ]
+)
