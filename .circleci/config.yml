@@ -22,13 +22,6 @@ jobs:
             terraform refresh
             terraform apply -auto-approve
 
-      - run:
-          name: Commit Build Artifacts
-          command: |
-            git config --global user.email "${GITHUB_EMAIL}"
-            git config --global user.name "${CIRCLE_USERNAME}"
-            git commit -am "CircleCI build ${CIRCLE_BUILD_NUM}"
-
       - persist_to_workspace:
           root: .
           paths:
