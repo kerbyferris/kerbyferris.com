@@ -1,3 +1,15 @@
+data "aws_caller_identity" "current" {}
+
+terraform {
+  backend "s3" {}
+
+  bucket     = "tf-state-${data.aws_caller_identity.current.account_id}"
+  key        = "terraform.kerbyferris.tfstate"
+  region     = "${var.AWS_REGION}"
+  encrypt    = true
+  profile    = "${var.AWS_PROFILE}"
+}
+
 provider "aws" {
   profile = "${var.AWS_PROFILE}"
   region  = "${var.AWS_REGION}"
