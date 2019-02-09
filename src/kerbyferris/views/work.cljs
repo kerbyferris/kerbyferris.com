@@ -128,7 +128,15 @@
         :poster "img/betweenPastAndFuture.jpg"
         :src "assets/video/betweenPastAndFuture.mp4"
         }]]
-     [:li [:img {:src "img/chakrates.png"}]]
+     ; [:li
+     ;  [:video
+     ;   {:controls true
+     ;    :loop false
+     ;    :playsinline true
+     ;    :type "video/mp4"
+     ;    :src "assets/video/youJoy.mp4#t=00:02:32"
+     ;    }]]
+     ; [:li [:img {:src "img/chakrates.png"}]]
     ]
   ]
 )
