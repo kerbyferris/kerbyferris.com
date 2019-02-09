@@ -14,3 +14,4 @@ pom.xml
 **/.terraform/*
 .lein*
 resources/public/js
+resources/public/assets/video
