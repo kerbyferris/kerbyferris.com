@@ -13,3 +13,4 @@ pom.xml
 .nrepl-port
 **/.terraform/*
 .lein*
+resources/public/js
