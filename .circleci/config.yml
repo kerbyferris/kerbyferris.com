@@ -11,7 +11,14 @@ jobs:
           name: Terraform
           command: |
             cd terraform
-            terraform init
+            terraform init \
+              -backend-config="bucket=tf-state-575575708653" \
+              -backend-config="key=terraform.kerbyferris.tfstate" \
+              -backend-config="region=us-east-1" \
+              -backend-config="profile=kerbyferris" \
+              -backend=true \
+              -force-copy \
+              -get=true
             terraform refresh
             terraform apply -auto-approve
 
