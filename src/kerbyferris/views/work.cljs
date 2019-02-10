@@ -134,6 +134,7 @@
         :playsinline true
         :type "video/mp4"
         :poster "img/youJoy.png"
+        :preload "none"
         :src "assets/video/youJoy.mp4#t=00:02:32"}]]
      [:li.image [:a {:href "https://photos.google.com/share/AF1QipPCt_ZhLmB_zaag7B7PExy50gg4iKX7-OYGPfkQMWxkjbcqVu8jGarY3siNcXWd1A?key=SmQta0liUU9oMEo2NnA2eC1MSGpzZU5sSFRzNktB"
                :target "_blank"} [:img {:src "img/tinyHouse.jpg"}]]]
