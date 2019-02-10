@@ -103,7 +103,7 @@
 (defn work[]
   [:div#work
     [:ul 
-     [:li
+     [:li.modular
       [:video
        {:controls true
         :loop true
@@ -111,7 +111,7 @@
         :type "video/mp4"
         :poster "img/meetingTheUniverseHalfway.jpg"
         :src "assets/video/meetingTheUniverseHalfway.mp4"}]]
-     [:li
+     [:li.modular
       [:video
        {:controls true
         :loop true
@@ -119,24 +119,26 @@
         :type "video/mp4"
         :poster "img/anotherScienceIsPossible.jpg"
         :src "assets/video/anotherScienceIsPossible.mp4"}]]
-     [:li
+     [:li.modular
       [:video
        {:controls true
         :loop true
         :playsinline true
         :type "video/mp4"
         :poster "img/betweenPastAndFuture.jpg"
-        :src "assets/video/betweenPastAndFuture.mp4"
-        }]]
-     ; [:li
-     ;  [:video
-     ;   {:controls true
-     ;    :loop false
-     ;    :playsinline true
-     ;    :type "video/mp4"
-     ;    :src "assets/video/youJoy.mp4#t=00:02:32"
-     ;    }]]
-     ; [:li [:img {:src "img/chakrates.png"}]]
+        :src "assets/video/betweenPastAndFuture.mp4"}]]
+     [:li
+      [:video
+       {:controls true
+        :loop false
+        :playsinline true
+        :type "video/mp4"
+        :poster "img/youJoy.png"
+        :src "assets/video/youJoy.mp4#t=00:02:32"}]]
+     [:li.image [:a {:href "https://photos.google.com/share/AF1QipPCt_ZhLmB_zaag7B7PExy50gg4iKX7-OYGPfkQMWxkjbcqVu8jGarY3siNcXWd1A?key=SmQta0liUU9oMEo2NnA2eC1MSGpzZU5sSFRzNktB"
+               :target "_blank"} [:img {:src "img/tinyHouse.jpg"}]]]
+     [:li.image [:a {:href "https://github.com/kerbyferris/chakrates"
+               :target "_blank"} [:img {:src "img/chakrates.png"}]]]
     ]
   ]
 )
