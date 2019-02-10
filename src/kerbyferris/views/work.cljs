@@ -103,7 +103,7 @@
 (defn work[]
   [:div#work
     [:ul 
-     [:li.modular
+     [:li.third
       [:video
        {:controls true
         :loop true
@@ -111,7 +111,7 @@
         :type "video/mp4"
         :poster "img/meetingTheUniverseHalfway.jpg"
         :src "assets/video/meetingTheUniverseHalfway.mp4"}]]
-     [:li.modular
+     [:li.third
       [:video
        {:controls true
         :loop true
@@ -119,7 +119,7 @@
         :type "video/mp4"
         :poster "img/anotherScienceIsPossible.jpg"
         :src "assets/video/anotherScienceIsPossible.mp4"}]]
-     [:li.modular
+     [:li.third
       [:video
        {:controls true
         :loop true
@@ -136,10 +136,12 @@
         :poster "img/youJoy.png"
         :preload "none"
         :src "assets/video/youJoy.mp4#t=00:02:32"}]]
-     [:li.image [:a {:href "https://photos.google.com/share/AF1QipPCt_ZhLmB_zaag7B7PExy50gg4iKX7-OYGPfkQMWxkjbcqVu8jGarY3siNcXWd1A?key=SmQta0liUU9oMEo2NnA2eC1MSGpzZU5sSFRzNktB"
+     [:li.half [:a {:href "https://photos.google.com/share/AF1QipPCt_ZhLmB_zaag7B7PExy50gg4iKX7-OYGPfkQMWxkjbcqVu8jGarY3siNcXWd1A?key=SmQta0liUU9oMEo2NnA2eC1MSGpzZU5sSFRzNktB"
                :target "_blank"} [:img {:src "img/tinyHouse.jpg"}]]]
-     [:li.image [:a {:href "https://github.com/kerbyferris/chakrates"
+     [:li.half [:a {:href "https://github.com/kerbyferris/chakrates"
                :target "_blank"} [:img {:src "img/chakrates.png"}]]]
+     [:li [:a {:href "https://mediatemple.net/blog/news/duck-typing-the-gender-gap/"
+               :target "_blank"} [:img {:src "img/feministResultSet.png"}]]]
     ]
   ]
 )

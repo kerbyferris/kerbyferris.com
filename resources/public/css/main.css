@@ -661,11 +661,11 @@ Media Queries
     flex-wrap: wrap;
     border: none;
   }
-    #work ul li.modular {
+    #work ul li.third {
       width: 33.333333333333333333%;
       margin: auto;
     }
-    #work ul li.image {
+    #work ul li.half {
       width: 50%;
       margin: auto;
     }
