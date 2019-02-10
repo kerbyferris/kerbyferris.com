@@ -142,6 +142,22 @@
                :target "_blank"} [:img {:src "img/chakrates.png"}]]]
      [:li [:a {:href "https://mediatemple.net/blog/news/duck-typing-the-gender-gap/"
                :target "_blank"} [:img {:src "img/feministResultSet.png"}]]]
+     [:li.third [:a {:href "https://github.com/kerbyferris/citizen-musician"
+               :target "_blank"} [:img {:src "img/citizenMusician.jpg"}]]]
+     [:li.third
+      [:video
+       {:controls true
+        :loop false
+        :playsinline true
+        :type "video/mp4"
+        :src "assets/video/bodyCall.mp4"}]]
+     [:li.third
+      [:video
+       {:controls true
+        :loop false
+        :playsinline true
+        :type "video/mp4"
+        :src "assets/video/wiredPencil.mp4"}]]
     ]
   ]
 )

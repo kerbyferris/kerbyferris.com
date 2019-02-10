@@ -659,9 +659,12 @@ Media Queries
   #work ul {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     border: none;
   }
     #work ul li.third {
+      display: inline-block;
       width: 33.333333333333333333%;
       margin: auto;
     }
