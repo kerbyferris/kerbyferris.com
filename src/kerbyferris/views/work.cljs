@@ -159,13 +159,15 @@
                :target "_blank"} [:img {:src "img/chakrates.png"}]]]
      [:li [:a {:href "https://mediatemple.net/blog/news/duck-typing-the-gender-gap/"
                :target "_blank"} [:img {:src "img/feministResultSet.png"}]]]
-     [:li.third
+     [:li.half
       [:video
        {:controls true
         :loop false
         :playsinline true
         :type "video/mp4"
         :src "assets/video/bodyCall.mp4"}]]
+     [:li.half [:a {:href "https://github.com/kerbyferris/body-call"
+               :target "_blank"} [:img {:src "img/bodyCall.png"}]]]
     ]
   ]
 )
