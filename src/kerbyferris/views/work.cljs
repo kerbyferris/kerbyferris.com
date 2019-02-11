@@ -168,6 +168,8 @@
         :src "assets/video/bodyCall.mp4"}]]
      [:li.half [:a {:href "https://github.com/kerbyferris/body-call"
                :target "_blank"} [:img {:src "img/bodyCall.png"}]]]
+     [:li [:a {:href "https://docs.google.com/presentation/d/1bgO8Xiuhk0NvUlij1wBBZZFKvF74bNM2MbQvobMLLoE/edit?usp=sharing"
+               :target "_blank"} [:img {:src "img/funkyBrowser.png"}]]]
     ]
   ]
 )
