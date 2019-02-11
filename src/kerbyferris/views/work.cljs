@@ -133,7 +133,7 @@
         :loop true
         :playsinline true
         :type "video/mp4"
-        :poster "img/modularOnTheSpotLA.mp4"
+        :poster "img/modularOnTheSpotLA.jpg"
         :src "assets/video/modularOnTheSpotLA.mp4"}]]
      [:li.third
       [:video
