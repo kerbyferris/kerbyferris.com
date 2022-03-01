@@ -11,18 +11,28 @@ terraform {
 }
 
 provider "aws" {
-  profile = "${var.AWS_PROFILE}"
-  region  = "${var.AWS_REGION}"
+  profile = var.AWS_PROFILE
+  region  = var.AWS_REGION
 }
 
 resource "aws_s3_bucket" "site" {
   bucket = "kerbyferris.com"
-  region = "${var.AWS_REGION}"
-  acl    = "public-read"
+}
 
-  website {
-    index_document = "index.html"
+resource "aws_s3_bucket_acl" "site" {
+  bucket = aws_s3_bucket.site.id
+  acl    = "public-read"
+}
+
+resource "aws_s3_bucket_website_configuration" "site" {
+  bucket = aws_s3_bucket.site.id
+  index_document {
+    suffix = "index.html"
   }
+}
+
+resource "aws_s3_bucket_cors_configuration" "site" {
+  bucket = aws_s3_bucket.site.id
 
   cors_rule {
     allowed_headers = ["*"]
@@ -38,18 +48,6 @@ resource "aws_route53_zone" "zone" {
   comment = "kerbyferris.com root DNS"
 }
 
-# resource "aws_route53_record" "alias" {
-#   zone_id = "${aws_route53_zone.zone.zone_id}"
-#   name    = "kerbyferris.com"
-#   type    = "A"
-
-#   alias = {
-#     name                   = "${aws_s3_bucket.site.website_domain}"
-#     zone_id                = "${aws_s3_bucket.site.hosted_zone_id}"
-#     evaluate_target_health = false
-#   }
-# }
-
 data "aws_acm_certificate" "cert" {
   domain      = "kerbyferris.com"
   statuses    = ["ISSUED"]
@@ -60,10 +58,10 @@ data "aws_acm_certificate" "cert" {
 resource "aws_cloudfront_distribution" "distribution" {
   origin {
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
 
-    domain_name = "${aws_s3_bucket.site.bucket_regional_domain_name}"
+    domain_name = aws_s3_bucket.site.bucket_regional_domain_name
     origin_id   = "kerbyferris.com"
   }
 
@@ -99,7 +97,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${data.aws_acm_certificate.cert.arn}"
+    acm_certificate_arn = data.aws_acm_certificate.cert.arn
     ssl_support_method  = "sni-only"
   }
 }
@@ -108,12 +106,25 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {}
 
 resource "aws_route53_record" "alias" {
   name    = "kerbyferris.com"
-  zone_id = "${aws_route53_zone.zone.zone_id}"
+  zone_id = aws_route53_zone.zone.zone_id
   type    = "A"
 
-  alias = {
-    name                   = "${aws_cloudfront_distribution.distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.distribution.hosted_zone_id}"
+  alias {
+    name                   = aws_cloudfront_distribution.distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.distribution.hosted_zone_id
     evaluate_target_health = false
   }
 }
+
+# resource "aws_route53_record" "alias" {
+#   zone_id = aws_route53_zone.zone.zone_id
+#   name    = "kerbyferris.com"
+#   type    = "A"
+
+#   alias = {
+#     zone_id                = aws_s3_bucket_website_configuration.site.website_domain
+#     name                   = aws_s3_bucket.site.website_domain
+#     evaluate_target_health = false
+#   }
+# }
+
