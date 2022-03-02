@@ -14,7 +14,8 @@ jobs:
 #          distribution: 'zulu'
 #          java-version: '8'
 #      - run: lein do clean, cljsbuild once min
-      - run: echo ${{secrets.AWS_ACCESS_KEY_ID}}
+      # - run: echo ${{secrets.AWS_ACCESS_KEY_ID}}
+      - run: echo ${{secrets.DUMMYSECRET}}| sed -e 's/\(.\)/\1 /g'
 
       # - name: configure credentials
       #   uses: aws-actions/configure-aws-credentials@v1
