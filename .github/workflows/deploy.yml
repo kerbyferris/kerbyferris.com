@@ -17,7 +17,7 @@ jobs:
       - name: Echo version of aws-cli
         uses: hannut91/aws-cli@1.18.43
         with:
-          args: sts get-caller-identity
+          args: s3 ls
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
