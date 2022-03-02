@@ -17,7 +17,7 @@ jobs:
       - name: Echo version of aws-cli
         uses: hannut91/aws-cli@1.18.43
         with:
-          args: --version
+          args: sts get-caller-identity
 
 #      - name: Upload files
 #        uses: hannut91/aws-cli@v1.18.43
