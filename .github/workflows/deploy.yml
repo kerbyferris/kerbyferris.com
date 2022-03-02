@@ -11,14 +11,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: setup teraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-            terraform_version: 1.1.6
-
-      - name: run tf-init
-        id: init
-        working-directory: ./terraform
+      - name: compile production files
         run: echo "something is: ${{ secrets.SOMETHING }}"
 
 
