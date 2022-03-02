@@ -19,4 +19,4 @@ jobs:
 
       - name: run tf-init
         id: init
-        run: echo ${{ secrets.SOMETHING}
+        run: echo ${{ secrets.SOMETHING }}
