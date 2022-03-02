@@ -19,4 +19,6 @@ jobs:
       - name: run tf-init
         id: init
         working-directory: ./terraform
-        run: echo ${{ secrets.SOMETHING }}
+        run: echo ${{ secrets.SOMETHING}}
+
+
