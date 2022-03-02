@@ -6,6 +6,12 @@ terraform {
       name = "kerbyferrisdotcom"
     }
   }
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
 }
 
 provider "aws" {
