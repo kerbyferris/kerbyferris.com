@@ -19,6 +19,6 @@ jobs:
       - name: run tf-init
         id: init
         working-directory: ./terraform
-        run: echo "something is still there: ${{ secrets.SOMETHING }}"
+        run: echo "something is: ${{ secrets.SOMETHING }}"
 
 
