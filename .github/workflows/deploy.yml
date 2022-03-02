@@ -1,27 +1,29 @@
-name: Deploy
+name: Build and Deploy
 on:
   push
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-#      - name: compile production files
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'zulu'
-#          java-version: '8'
-#      - run: lein do clean, cljsbuild once min
+      - name: compile production files
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+      - run: lein do clean, cljsbuild once min
 
       - name: configure credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: $AWS_ACCESS_KEY_ID
-          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: test s3 connection
+      - name: upload to s3
         run: |
-          aws s3 ls
+          aws s3 cp resources/public/ s3://kerbyferris.com
+          --recursive
+          --acl public-read
