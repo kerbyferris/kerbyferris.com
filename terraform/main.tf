@@ -1,18 +1,25 @@
 data "aws_caller_identity" "current" {}
 
 terraform {
-  backend "s3" {
-    bucket     = "tf-state-575575708653"
-    key        = "terraform.kerbyferris.tfstate"
-    region     = "us-east-1"
-    encrypt    = true
-    profile    = "kerbyferris"
+  # backend "s3" {
+  #   bucket     = "tf-state-575575708653"
+  #   key        = "terraform.kerbyferris.tfstate"
+  #   region     = "us-east-1"
+  #   encrypt    = true
+  #   profile    = "kerbyferris"
+  # }
+
+  cloud {
+    hostname = "app.terraform.io"
+    organization = "kerbyferris"
+    workspaces {
+      name = "kerbyferrisdotcom"
+    }
   }
 }
 
 provider "aws" {
-  profile = var.AWS_PROFILE
-  region  = var.AWS_REGION
+  region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "site" {
