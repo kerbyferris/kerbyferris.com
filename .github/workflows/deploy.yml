@@ -23,5 +23,5 @@ jobs:
           aws-region: us-east-1
 
       - name: test s3 connection
-      - run: |
+        run: |
           aws s3 ls
