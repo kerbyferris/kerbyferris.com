@@ -1,14 +1,4 @@
-data "aws_caller_identity" "current" {}
-
 terraform {
-  # backend "s3" {
-  #   bucket     = "tf-state-575575708653"
-  #   key        = "terraform.kerbyferris.tfstate"
-  #   region     = "us-east-1"
-  #   encrypt    = true
-  #   profile    = "kerbyferris"
-  # }
-
   cloud {
     hostname = "app.terraform.io"
     organization = "kerbyferris"
