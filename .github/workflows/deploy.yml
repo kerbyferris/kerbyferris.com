@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: compile production files
-        run: echo "something is: ${{ secrets.SOMETHING }}"
+        run: echo "something"
 
 
