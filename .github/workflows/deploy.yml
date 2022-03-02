@@ -3,15 +3,10 @@ on: [push]
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./terraform
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
       - name: compile production files
         run: lein do clean, cljsbuild once min
-
 
