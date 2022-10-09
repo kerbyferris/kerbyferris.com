@@ -101,7 +101,6 @@ resource "aws_cloudfront_distribution" "distribution" {
 
   viewer_certificate {
     acm_certificate_arn = data.aws_acm_certificate.cert.arn
-    # acm_certificate_arn = "arn:aws:acm:us-east-1:575575708653:certificate/cf37c19a-4a15-43bf-8171-d17aebe7663f"
     ssl_support_method  = "sni-only"
   }
 }
@@ -120,6 +119,7 @@ resource "aws_route53_record" "alias" {
   }
 }
 
+# This is for service from s3 bucket only, no cloudfront
 # resource "aws_route53_record" "alias" {
 #   zone_id = aws_route53_zone.zone.zone_id
 #   name    = "kerbyferris.com"
