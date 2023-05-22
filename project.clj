@@ -4,21 +4,26 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.6.1"
+  :min-lein-version "2.9.8"
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.89"]
-                 [org.clojure/core.async "0.2.385"
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [org.clojure/clojurescript "1.11.60"]
+                 [com.bhauman/figwheel-main "0.2.18"]
+                 [org.clojure/core.async "1.6.673"
                   :exclusions [org.clojure/tools.reader]]
-                 [reagent "0.5.1"]
+                 [reagent "1.2.0"]
                  [secretary "1.2.3"]
                  [prismatic/dommy "1.1.0"]
-                 [jayq "2.5.4"]
-                 [binaryage/devtools "0.8.2"]
-                 [jayq "2.5.4"]]
+                 [binaryage/devtools "1.0.7"]
+                 [cljsjs/react "17.0.2-0"]
+                 [cljsjs/react-dom "17.0.2-0"]
+                 [jayq "2.5.5"]]
 
-  :plugins [[lein-figwheel "0.5.4-7"]
-            [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
+  :plugins [
+            [lein-figwheel "0.5.18"]
+            [lein-cljsbuild "1.1.8" :exclusions [[org.clojure/clojure]]]
+            [lein-ancient "0.7.0"]
+            ]
 
   :source-paths ["src"]
 
@@ -98,9 +103,10 @@
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
 
 
-  :profiles {:dev {:dependencies [[binaryage/devtools "0.7.2"]
-                                  [figwheel-sidecar "0.5.4-7"]
-                                  [com.cemerick/piggieback "0.2.1"]]
+  :profiles {:dev {:dependencies [[binaryage/devtools "1.0.7"]
+                                  [figwheel-sidecar "0.5.18"]
+                                  [com.cemerick/piggieback "0.2.2"]
+                                  ]
                    ;; need to add dev source path here to get user.clj loaded
                    :source-paths ["src" "dev"]
                    ;; for CIDER

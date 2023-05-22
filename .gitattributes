@@ -1,1 +1,3 @@
-resources/* linguist-vendored
+* linguist-vendored
+*.cljs linguist-vendored=false
+*.clj linguist-vendored=false
